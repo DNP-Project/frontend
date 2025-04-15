@@ -1,0 +1,10 @@
+{
+  "common": {
+    "lang": {
+      "en": "English",
+      "ru": "Russian"
+    },
+    "loading": "Loading"
+  },
+  "magic": "Magic starts with the simple"
+}
