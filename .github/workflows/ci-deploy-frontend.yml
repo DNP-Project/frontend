@@ -38,13 +38,13 @@ jobs:
 
       - name: Build Docker image
         run: |
-          TAG=${{ github.ref == 'refs/heads/main' && echo latest || echo dev }}
+          TAG=${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$TAG .
 
 
       - name: Push Docker image
         run: |
-          TAG=${{ github.ref == 'refs/heads/main' && echo latest || echo dev }}
+          TAG=${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$TAG
 
   deploy:
@@ -59,7 +59,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            TAG=${{ github.ref == 'refs/heads/main' && echo latest || echo dev }}
+            TAG=${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
             if [ "$TAG" = "latest" ]; then
               cd /devops/prod
             else
