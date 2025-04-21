@@ -61,9 +61,9 @@ jobs:
           script: |
             TAG=${{ github.ref == 'refs/heads/main' && echo latest || echo dev }}
             if [ "$TAG" = "latest" ]; then
-              cd /opt/prod
+              cd /devops/prod
             else
-              cd /opt/stage
+              cd /devops/stage
             fi
             docker compose pull frontend
             docker compose up -d frontend
