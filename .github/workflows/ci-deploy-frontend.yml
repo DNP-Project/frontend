@@ -39,7 +39,7 @@ jobs:
       - name: Build Docker image
         run: |
           TAG=${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
-          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$TAG .
+          docker build -f devops/Dockerfile -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$TAG .
 
 
       - name: Push Docker image
