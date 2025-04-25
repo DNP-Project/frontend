@@ -1,5 +1,5 @@
 import {PhonebookPage} from "@/pages/phonebook/phonebookPage.tsx";
-import useT, {AutoTranslationProvider} from "@/contexts/AutoTranslationContext.tsx";
+import {AutoTranslationProvider} from "@/contexts/AutoTranslationContext.tsx";
 import {StorageProvider} from "@/contexts/StorageContext.tsx";
 import {ThemeProvider} from "@/contexts/ThemeContext.tsx";
 
