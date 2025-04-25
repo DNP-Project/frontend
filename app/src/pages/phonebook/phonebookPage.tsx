@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { EntryCard } from "@/components/phonebook/EntryCard";
 import { AddEntry } from "@/components/phonebook/AddEntry";
 import { fetchEntries, addEntry, editEntry, deleteEntry } from "@/services/phonebookService";
 
 export function PhonebookPage() {
-  const [entries, setEntries] = useState<{ id: string; name: string; phone: string }[]>([]);
+  const [entries, setEntries] = useState<{
+      email: any; id: string; name: string; phone: string 
+}[]>([]);
 
   useEffect(() => {
     async function loadEntries() {
@@ -14,13 +16,13 @@ export function PhonebookPage() {
     loadEntries();
   }, []);
 
-  const handleAddEntry = async (name: string, phone: string) => {
-    const newEntry = await addEntry(name, phone);
+  const handleAddEntry = async (name: string, phone: string, email: string) => {
+    const newEntry = await addEntry(name, phone, email);
     setEntries((prev) => [...prev, newEntry]);
   };
 
-  const handleEditEntry = async (id: string, name: string, phone: string) => {
-    const updatedEntry = await editEntry(id, name, phone);
+  const handleEditEntry = async (id: string, name: string, phone: string, email: string) => {
+    const updatedEntry = await editEntry(name, phone, email);
     setEntries((prev) =>
       prev.map((entry) => (entry.id === id ? updatedEntry : entry))
     );
@@ -43,7 +45,8 @@ export function PhonebookPage() {
             key={entry.id}
             name={entry.name}
             phone={entry.phone}
-            onEdit={(name, phone) => handleEditEntry(entry.id, name, phone)}
+            email={entry.email}
+            onEdit={(name, phone) => handleEditEntry(entry.id, name, phone, entry.email)}
             onDelete={() => handleDeleteEntry(entry.id)}
           />
         ))}

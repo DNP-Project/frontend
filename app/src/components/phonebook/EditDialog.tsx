@@ -10,8 +10,25 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useState } from "react";
 
-export function EditDialog() {
+type EditDialogProps = {
+  name: string;
+  phone: string;
+  email: string;
+  onSave: (name: string, phone: string, email: string) => void;
+  onCancel: () => void;
+};
+
+export function EditDialog({ name, phone, email, onSave, onCancel }: EditDialogProps) {
+  const [editedName, setEditedName] = useState(name);
+  const [editedPhone, setEditedPhone] = useState(phone);
+  const [editedEmail, setEditedEmail] = useState(email);
+
+  const handleSave = () => {
+    onSave(editedName, editedPhone, editedEmail);
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -29,17 +46,24 @@ export function EditDialog() {
             <Label htmlFor="name" className="text-right">
               Name
             </Label>
-            <Input id="name" value="" className="col-span-3" />
+            <Input id="name" value={editedName} onChange={(e) => setEditedName(e.target.value)} className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="number" className="text-right">
               Phone
             </Label>
-            <Input id="number" value="" className="col-span-3" />
+            <Input id="number" value={editedPhone} onChange={(e) => setEditedPhone(e.target.value)} className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="email" className="text-right">
+              Email
+            </Label>
+            <Input id="email" value={editedEmail} onChange={(e) => setEditedEmail(e.target.value)} className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="button" onClick={handleSave}>Save changes</Button>
+          <Button type="button" onClick={onCancel}>Cancel</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

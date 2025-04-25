@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import {PhonebookPage} from "@/pages/phonebook/phonebookPage.tsx";
 import useT, {AutoTranslationProvider} from "@/contexts/AutoTranslationContext.tsx";
 import {StorageProvider} from "@/contexts/StorageContext.tsx";
 import {ThemeProvider} from "@/contexts/ThemeContext.tsx";
@@ -11,7 +11,7 @@ function App() {
             <AutoTranslationProvider>
                 <ThemeProvider>
                     <div className="flex flex-col items-center justify-center min-h-svh">
-                        <Button>{_("magic")}</Button>
+                        <PhonebookPage></PhonebookPage>
                     </div>
                 </ThemeProvider>
             </AutoTranslationProvider>

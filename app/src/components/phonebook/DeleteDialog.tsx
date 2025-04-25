@@ -9,7 +9,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-export function DeleteDialog() {
+type DeleteDialogProps = {
+  onConfirm: () => void;
+  onCancel: () => void;
+};
+
+export function DeleteDialog({ onConfirm, onCancel }: DeleteDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -23,8 +28,8 @@ export function DeleteDialog() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="secondary">No</Button>
-          <Button variant="destructive">Yes</Button>
+          <Button variant="secondary" onClick={onCancel}>No</Button>
+          <Button variant="destructive" onClick={onConfirm}>Yes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
