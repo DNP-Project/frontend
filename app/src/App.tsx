@@ -4,7 +4,6 @@ import {StorageProvider} from "@/contexts/StorageContext.tsx";
 import {ThemeProvider} from "@/contexts/ThemeContext.tsx";
 
 function App() {
-    const { _ } = useT();
 
     return (
         <StorageProvider>
