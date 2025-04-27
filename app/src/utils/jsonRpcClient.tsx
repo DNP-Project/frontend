@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "backend/rpc",
+  baseURL: "https://stage.dnp-project.ru/backend/rpc",
   headers: {
     "Content-Type": "application/json",
   },

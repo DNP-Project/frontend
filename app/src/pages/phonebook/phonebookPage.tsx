@@ -34,7 +34,7 @@ export function PhonebookPage() {
   };
 
   return (
-    <div className="container mx-auto p-4" style={{ backgroundColor: "var(--color-primary-foreground)" }}>
+    <div className="container mx-auto p-4 fixed top-0 left-0 w-full" style={{ backgroundColor: "var(--color-primary-foreground)" }}>
       <div className="fixed top-0 left-0 w-full flex justify-between pl-5 pr-3 items-center backdrop-blur-md" style={{ backgroundColor: "rgba(var(--sidebar-primary), 0.5)" }}>
         <h1 className="text-2xl text-center font-bold mb-1">My Phonebook</h1>
         <AddEntry onAdd={handleAddEntry} />
