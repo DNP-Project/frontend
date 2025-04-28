@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,14 +7,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+  DialogClose
+} from "@/components/ui/dialog";
 
 type DeleteDialogProps = {
   onConfirm: () => void;
-  onCancel: () => void;
 };
 
-export function DeleteDialog({ onConfirm, onCancel }: DeleteDialogProps) {
+export function DeleteDialog({ onConfirm }: DeleteDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -28,10 +28,12 @@ export function DeleteDialog({ onConfirm, onCancel }: DeleteDialogProps) {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="secondary" onClick={onCancel}>No</Button>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">No</Button>
+          </DialogClose>
           <Button variant="destructive" onClick={onConfirm}>Yes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

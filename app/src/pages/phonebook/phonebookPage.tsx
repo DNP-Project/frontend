@@ -6,7 +6,8 @@ import { fetchEntries, addEntry, editEntry, deleteEntry } from "@/services/phone
 export function PhonebookPage() {
   const [entries, setEntries] = useState<{
       email: any; id: string; name: string; phone: string 
-}[]>([]);
+  }[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadEntries() {
@@ -17,8 +18,14 @@ export function PhonebookPage() {
   }, []);
 
   const handleAddEntry = async (name: string, phone: string, email: string) => {
-    const newEntry = await addEntry(name, phone, email);
-    setEntries((prev) => [...prev, newEntry]);
+    try {
+      const newEntry = await addEntry(name, phone, email);
+      setEntries((prev) => [...prev, newEntry]);
+      setError(null);
+    } catch (error: any) {
+      console.error("Failed to add entry:", error.response?.data || error.message);
+      setError(error.response?.data?.error?.message || "An error occurred while adding the entry.");
+    }
   };
 
   const handleEditEntry = async (id: string, name: string, phone: string, email: string) => {
@@ -32,6 +39,13 @@ export function PhonebookPage() {
     await deleteEntry(id);
     setEntries((prev) => prev.filter((entry) => entry.id !== id));
   };
+  const handleEdit = (name: string, phone: string, email: string) => {
+    console.log("Edited Entry:", { name, phone, email });
+  };
+
+  const handleDelete = () => {
+    console.log("Entry Deleted");
+  };
 
   return (
     <div className="container mx-auto p-4 fixed top-0 left-0 w-full" style={{ backgroundColor: "var(--color-primary-foreground)" }}>
@@ -39,6 +53,7 @@ export function PhonebookPage() {
         <h1 className="text-2xl text-center font-bold mb-1">My Phonebook</h1>
         <AddEntry onAdd={handleAddEntry} />
       </div>
+      {error && <div className="error-message">{error}</div>}
       <div className="flex gap-8 justify-center-safe flex-wrap scroll-mt-5 mt-12">
         {entries.map((entry) => (
           <EntryCard
