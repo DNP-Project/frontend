@@ -12,6 +12,10 @@ export async function deleteEntry(id: string) {
   return await jsonRpcRequest("DeleteContact", { id });
 }
 
+export async function GetByName() {
+  return await jsonRpcRequest("GetByName", {name});
+}
+
 export async function fetchEntries() {
-  return await jsonRpcRequest("GetByName", {name: ""});
+  return await jsonRpcRequest("GetAllContacts", {});
 }

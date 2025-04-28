@@ -55,7 +55,7 @@ export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="number" className="text-right">
-              Phone
+              Phone in format +XXXXXXXX
             </Label>
             <Input
               id="number"
