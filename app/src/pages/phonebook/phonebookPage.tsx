@@ -39,13 +39,6 @@ export function PhonebookPage() {
     await deleteEntry(id);
     setEntries((prev) => prev.filter((entry) => entry.id !== id));
   };
-  const handleEdit = (name: string, phone: string, email: string) => {
-    console.log("Edited Entry:", { name, phone, email });
-  };
-
-  const handleDelete = () => {
-    console.log("Entry Deleted");
-  };
 
   return (
     <div className="container mx-auto p-4 fixed top-0 left-0 w-full" style={{ backgroundColor: "var(--color-primary-foreground)" }}>
