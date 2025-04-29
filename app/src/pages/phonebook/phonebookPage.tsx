@@ -95,6 +95,7 @@ export function PhonebookPage() {
     }
   };
 
+
   const filteredEntries = entries.filter((entry) =>
     entry.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     entry.phone.includes(searchQuery) ||
@@ -105,7 +106,7 @@ export function PhonebookPage() {
     <div className="h-screen w-screen bg-primary-foreground fixed top-0 left-0 p-4">
       <div className="fixed top-0 left-0 w-full flex justify-between pl-5 pr-3 items-center backdrop-blur-md bg-primary/50">
         <h1 className="text-2xl text-center mb-1">My Phonebook</h1>
-        <AddEntry onAdd={handleAddEntry} />
+          <AddEntry onAdd={handleAddEntry} />
       </div>
       <div className="mt-16 mb-4">
         <Input
@@ -125,19 +126,24 @@ export function PhonebookPage() {
           </Alert>
         </div>
       )}
-      <div className="flex gap-8 justify-center-safe flex-wrap scroll-mt-5 mt-12">
-        {
-        filteredEntries.map((entry) => (
-          <EntryCard
-            key={entry.id}
-            name={entry.name}
-            phone={entry.phone}
-            email={entry.email}
-            onEdit={(name, phone, email) => handleEditEntry(entry.id, name, phone, email)}
-            onDelete={() => handleDeleteEntry(entry.id)}
-          />
-        ))}
-      </div>
+      {entries.length > 0 && filteredEntries.length === 0 ? (
+        <div className="flex items-center justify-center h-full w-full">
+          <p className="text-gray-500 text-xl">No matching entries found.</p>
+        </div>
+      ) : (
+        <div className="flex gap-8 justify-center-safe flex-wrap scroll-mt-5 mt-12">
+          {filteredEntries.map((entry) => (
+            <EntryCard
+              key={entry.id}
+              name={entry.name}
+              phone={entry.phone}
+              email={entry.email}
+              onEdit={(name, phone, email) => handleEditEntry(entry.id, name, phone, email)}
+              onDelete={() => handleDeleteEntry(entry.id)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
