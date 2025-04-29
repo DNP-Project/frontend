@@ -27,12 +27,15 @@ export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
   const [editedEmail, setEditedEmail] = useState(email);
 
   const handleSave = () => {
-    onSave(editedName || name, editedPhone || phone, editedEmail || email);
+    onSave(
+      editedName !== undefined && editedName !== null ? editedName : name,
+      editedPhone !== undefined && editedPhone !== null ? editedPhone : phone,
+      editedEmail !== undefined && editedEmail !== null ? editedEmail : email
+    );
   };
 
   return (
     <Dialog>
-      console.log("Dialog rendered");
       <DialogTrigger asChild>
         <Button variant="outline" className="mr-2">Edit</Button>
       </DialogTrigger>
