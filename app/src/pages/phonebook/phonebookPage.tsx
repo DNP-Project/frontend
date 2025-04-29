@@ -31,6 +31,7 @@ export function PhonebookPage() {
           phone: string;
           email: string;
         }[];
+        console.log("Fetched entries:", flatData);
         setEntries(flatData);
       } catch (err) {
         handleError("Failed to load entries.");
