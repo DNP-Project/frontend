@@ -27,7 +27,7 @@ export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
   const [editedEmail, setEditedEmail] = useState(email);
 
   const handleSave = () => {
-    onSave(editedName, editedPhone, editedEmail);
+    onSave(editedName || name, editedPhone || phone, editedEmail || email);
   };
 
   return (
@@ -78,7 +78,7 @@ export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="button" onClick={handleSave}>Save changes</Button>
+          <Button type="button" onClick={handleSave}>Save</Button>
           <DialogClose asChild>
             <Button type="button" variant="secondary">Close</Button>
           </DialogClose>
