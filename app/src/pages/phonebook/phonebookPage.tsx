@@ -113,6 +113,8 @@ export function PhonebookPage() {
             <p className="text-gray-500 text-xl">No entries found. Press the "Add phone" button to get started!</p>
           </div>
         ) : (
+          <div className="flex gap-8 justify-center-safe flex-wrap scroll-mt-5 mt-12">
+          {
           entries.map((entry) => (
             <EntryCard
               key={entry.id}
@@ -122,8 +124,9 @@ export function PhonebookPage() {
               onEdit={(name, phone, email) => handleEditEntry(entry.id, name, phone, email)}
               onDelete={() => handleDeleteEntry(entry.id)}
             />
-          ))
-        )}
+          ))}
+        </div>)
+        }
     </div>
   );
 }
