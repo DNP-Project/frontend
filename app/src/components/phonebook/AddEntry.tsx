@@ -63,7 +63,7 @@ export function AddEntry({ onAdd }: { onAdd: (name: string, phone: string, email
             <Input
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} // Fixed the bug here
+              onChange={(e) => setEmail(e.target.value)}
               className="col-span-3"
             />
           </div>

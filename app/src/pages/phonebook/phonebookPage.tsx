@@ -125,25 +125,19 @@ export function PhonebookPage() {
           </Alert>
         </div>
       )}
-      {filteredEntries.length === 0 ? (
-          <div className="flex items-center justify-center h-full w-full">
-            <p className="text-gray-500 text-xl">No matching entries found.</p>
-          </div>
-        ) : (
-          <div className="flex gap-8 justify-center-safe flex-wrap scroll-mt-5 mt-12">
-          {
-          filteredEntries.map((entry) => (
-            <EntryCard
-              key={entry.id}
-              name={entry.name}
-              phone={entry.phone}
-              email={entry.email}
-              onEdit={(name, phone, email) => handleEditEntry(entry.id, name, phone, email)}
-              onDelete={() => handleDeleteEntry(entry.id)}
-            />
-          ))}
-        </div>)
-        }
+      <div className="flex gap-8 justify-center-safe flex-wrap scroll-mt-5 mt-12">
+        {
+        filteredEntries.map((entry) => (
+          <EntryCard
+            key={entry.id}
+            name={entry.name}
+            phone={entry.phone}
+            email={entry.email}
+            onEdit={(name, phone, email) => handleEditEntry(entry.id, name, phone, email)}
+            onDelete={() => handleDeleteEntry(entry.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
