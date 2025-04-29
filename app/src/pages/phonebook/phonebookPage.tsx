@@ -55,7 +55,7 @@ export function PhonebookPage() {
             name={entry.name}
             phone={entry.phone}
             email={entry.email}
-            onEdit={(name, phone) => handleEditEntry(entry.id, name, phone, entry.email)}
+            onEdit={(name, phone, email) => handleEditEntry(entry.id, name, phone, email)}
             onDelete={() => handleDeleteEntry(entry.id)}
           />
         ))}

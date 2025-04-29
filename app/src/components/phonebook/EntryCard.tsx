@@ -11,6 +11,7 @@ type EntryCardProps = {
 
 export function EntryCard({ name, phone, email, onEdit, onDelete }: EntryCardProps) {
   const handleEditSave = (editedName: string, editedPhone: string, editedEmail: string) => {
+    console.log("Edited values:", { editedName, editedPhone, editedEmail });
     onEdit(editedName, editedPhone, editedEmail);
   };
 
