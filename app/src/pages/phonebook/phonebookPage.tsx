@@ -53,7 +53,7 @@ export function PhonebookPage() {
       handleError("All fields are required.");
       return;
     }
-    if (!/^\+\d{11,15}$/.test(phone)) {
+    if (!/^\+\d{11}$/.test(phone)) {
       handleError("Phone number must be written in the format +XXXXXXXXXXX");
       return;
     }
@@ -70,7 +70,7 @@ export function PhonebookPage() {
       handleError("All fields are required.");
       return;
     }
-    if (!/^\+\d{11,15}$/.test(phone)) {
+    if (!/^\+\d{11}$/.test(phone)) {
       handleError("Phone number must be written in the format +XXXXXXXXXXX");
       return;
     }
