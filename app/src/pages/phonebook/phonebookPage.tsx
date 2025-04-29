@@ -22,7 +22,7 @@ export function PhonebookPage() {
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
-    async function loadEntries() {
+    const loadEntries = async () => {
       try {
         const data = await fetchEntries();
         const flatData = Object.values(data).flat() as {
@@ -31,13 +31,14 @@ export function PhonebookPage() {
           phone: string;
           email: string;
         }[];
-        console.log("Fetched entries:", flatData);
+        console.log("Fetched entries:", flatData); // Debug statement
         setEntries(flatData);
       } catch (err) {
         handleError("Failed to load entries.");
       }
-    }
-    loadEntries();
+    };
+
+    loadEntries(); // Call the async function
   }, []);
 
   const handleError = (message: string) => {
