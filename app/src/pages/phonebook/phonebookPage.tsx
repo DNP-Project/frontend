@@ -5,7 +5,7 @@ import { fetchEntries, addEntry, editEntry, deleteEntry } from "@/services/phone
 
 export function PhonebookPage() {
   const [entries, setEntries] = useState<{
-      email: any; id: string; name: string; phone: string 
+      id: string; name: string; phone: string, email: string; 
   }[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,6 +31,7 @@ export function PhonebookPage() {
 
   const handleEditEntry = async (id: string, name: string, phone: string, email: string) => {
     const updatedEntry = await editEntry(name, phone, email);
+    console.log("Updated Entry:", updatedEntry);
     setEntries((prev) =>
       prev.map((entry) => (entry.id === id ? updatedEntry : entry))
     );
