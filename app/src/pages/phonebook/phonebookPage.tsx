@@ -4,6 +4,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import { EntryCard } from "@/components/phonebook/EntryCard";
 import { AddEntry } from "@/components/phonebook/AddEntry";
 import { fetchEntries, addEntry, editEntry, deleteEntry } from "@/services/phonebookService";
@@ -20,6 +21,7 @@ export function PhonebookPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showError, setShowError] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const loadEntries = async () => {
@@ -31,15 +33,22 @@ export function PhonebookPage() {
           phone: string;
           email: string;
         }[];
-        console.log("Fetched entries:", flatData); // Debug statement
         setEntries(flatData);
       } catch (err) {
         handleError("Failed to load entries.");
       }
     };
 
-    loadEntries(); // Call the async function
+    loadEntries();
   }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   const handleError = (message: string) => {
     setError(message);
@@ -109,7 +118,12 @@ export function PhonebookPage() {
     <div className="h-screen w-screen bg-primary-foreground fixed top-0 left-0 p-4">
       <div className="fixed top-0 left-0 w-full flex justify-between pl-5 pr-3 items-center backdrop-blur-md bg-primary/50">
         <h1 className="text-2xl text-center mb-1">My Phonebook</h1>
-        <AddEntry onAdd={handleAddEntry} />
+        <div>
+          <Button className="text-md mr-4" onClick={() => setIsDarkMode((prev) => !prev)}>
+            Change theme
+          </Button>
+          <AddEntry onAdd={handleAddEntry} />
+        </div>
       </div>
       <div className="mt-16 mb-4">
         <Input
@@ -119,6 +133,9 @@ export function PhonebookPage() {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full max-w-md mx-auto"
         />
+      </div>
+      <div>
+        
       </div>
       {error && (
         <div className={`fixed bottom-4 right-4 px-4 py-2 rounded shadow-lg transition-opacity duration-500 ${showError ? "opacity-100" : "opacity-0"}`}>
