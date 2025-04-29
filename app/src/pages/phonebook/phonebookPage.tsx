@@ -108,9 +108,7 @@ export function PhonebookPage() {
 
   const filteredEntries = searchQuery
     ? entries.filter((entry) =>
-        entry.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        entry.phone.includes(searchQuery) ||
-        entry.email.toLowerCase().includes(searchQuery.toLowerCase())
+        entry.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : entries;
 
