@@ -26,7 +26,6 @@ export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
   const [editedEmail, setEditedEmail] = useState(email);
 
   const handleSave = () => {
-    console.log("EditDialog Props:", { editedName, editedPhone, editedEmail });
     onSave(
       editedName !== undefined && editedName !== null ? editedName : name,
       editedPhone !== undefined && editedPhone !== null ? editedPhone : phone,

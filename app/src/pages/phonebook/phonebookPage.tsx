@@ -31,7 +31,6 @@ export function PhonebookPage() {
 
   const handleEditEntry = async (id: string, name: string, phone: string, email: string) => {
     const updatedEntry = await editEntry(id, name, phone, email);
-    console.log("Updated Entry:", updatedEntry);
     setEntries((prev) =>
       prev.map((entry) => (entry.id === id ? updatedEntry : entry))
     );
