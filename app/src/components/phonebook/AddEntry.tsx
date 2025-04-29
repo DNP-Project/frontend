@@ -26,7 +26,7 @@ export function AddEntry({ onAdd }: { onAdd: (name: string, phone: string, email
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="mb-2 mt-2">Add phone</Button>
+        <Button variant="outline" className="mb-2 mt-2 mr-2.5 bg-primary text-md">Add phone</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
