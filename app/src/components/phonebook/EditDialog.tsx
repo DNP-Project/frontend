@@ -21,6 +21,7 @@ type EditDialogProps = {
 };
 
 export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
+  console.log("EditDialog Props:", { name, phone, email });
   const [editedName, setEditedName] = useState(name);
   const [editedPhone, setEditedPhone] = useState(phone);
   const [editedEmail, setEditedEmail] = useState(email);
@@ -55,13 +56,13 @@ export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="number" className="text-right">
-              Phone in format +XXXXXXXX
+              Phone
             </Label>
             <Input
               id="number"
               value={editedPhone}
               onChange={(e) => setEditedPhone(e.target.value)}
-              className="col-span-3"
+              className="col-span-3" placeholder="+XXXXXXXXXXX"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">

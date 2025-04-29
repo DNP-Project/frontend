@@ -52,6 +52,7 @@ export function AddEntry({ onAdd }: { onAdd: (name: string, phone: string, email
               id="number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              placeholder="+XXXXXXXXXXX"
               className="col-span-3"
             />
           </div>
