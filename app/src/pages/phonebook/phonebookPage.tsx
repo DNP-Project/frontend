@@ -95,18 +95,19 @@ export function PhonebookPage() {
     }
   };
 
-
-  const filteredEntries = entries.filter((entry) =>
-    entry.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    entry.phone.includes(searchQuery) ||
-    entry.email.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredEntries = searchQuery
+    ? entries.filter((entry) =>
+        entry.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        entry.phone.includes(searchQuery) ||
+        entry.email.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : entries;
 
   return (
     <div className="h-screen w-screen bg-primary-foreground fixed top-0 left-0 p-4">
       <div className="fixed top-0 left-0 w-full flex justify-between pl-5 pr-3 items-center backdrop-blur-md bg-primary/50">
         <h1 className="text-2xl text-center mb-1">My Phonebook</h1>
-          <AddEntry onAdd={handleAddEntry} />
+        <AddEntry onAdd={handleAddEntry} />
       </div>
       <div className="mt-16 mb-4">
         <Input
