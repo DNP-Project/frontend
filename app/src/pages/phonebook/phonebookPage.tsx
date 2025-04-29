@@ -116,7 +116,7 @@ export function PhonebookPage() {
 
   return (
     <div className="h-screen w-screen bg-primary-foreground fixed top-0 left-0 p-4">
-      <div className="fixed top-0 left-0 w-full flex justify-between pl-5 pr-3 items-center backdrop-blur-md bg-primary/50">
+      <div className="fixed top-0 left-0 w-full flex justify-between pl-5 pr-3 items-center backdrop-blur-md bg-sidebar-ring">
         <h1 className="text-2xl text-center mb-1">My Phonebook</h1>
         <div>
           <Button className="text-md mr-4" onClick={() => setIsDarkMode((prev) => !prev)}>

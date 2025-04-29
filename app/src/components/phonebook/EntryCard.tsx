@@ -19,20 +19,22 @@ export function EntryCard({ name, phone, email, onEdit, onDelete }: EntryCardPro
   };
 
   return (
-    <div className="card">
+    <div className="card bg-sidebar-ring shadow-md p-4 rounded-lg max-w-max">
       <div>
-        <h3>{name}</h3>
+        <h3 className="font-bold">{name}</h3>
         <p>{phone}</p>
-        <p>{email}</p>
-        <EditDialog
-          name={name}
-          phone={phone}
-          email={email}
-          onSave={handleEditSave}
-        />
-        <DeleteDialog
-          onConfirm={handleDeleteConfirm}
-        />
+        <p className="mb-2">{email}</p>
+        <div>
+          <EditDialog
+            name={name}
+            phone={phone}
+            email={email}
+            onSave={handleEditSave}
+          />
+          <DeleteDialog
+            onConfirm={handleDeleteConfirm}
+          />
+        </div>
       </div>
     </div>
   );
