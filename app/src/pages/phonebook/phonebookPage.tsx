@@ -7,6 +7,7 @@ import {
 import { EntryCard } from "@/components/phonebook/EntryCard";
 import { AddEntry } from "@/components/phonebook/AddEntry";
 import { fetchEntries, addEntry, editEntry, deleteEntry } from "@/services/phonebookService";
+import { Input } from "@/components/ui/input";
 import { Terminal } from "lucide-react";
 
 export function PhonebookPage() {
@@ -16,6 +17,7 @@ export function PhonebookPage() {
     phone: string;
     email: string;
   }[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showError, setShowError] = useState(false);
 
@@ -93,11 +95,26 @@ export function PhonebookPage() {
     }
   };
 
+  const filteredEntries = entries.filter((entry) =>
+    entry.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    entry.phone.includes(searchQuery) ||
+    entry.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="h-screen w-screen bg-primary-foreground fixed top-0 left-0 p-4">
       <div className="fixed top-0 left-0 w-full flex justify-between pl-5 pr-3 items-center backdrop-blur-md bg-primary/50">
         <h1 className="text-2xl text-center mb-1">My Phonebook</h1>
         <AddEntry onAdd={handleAddEntry} />
+      </div>
+      <div className="mt-16 mb-4">
+        <Input
+          type="text"
+          placeholder="Search by name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full max-w-md mx-auto"
+        />
       </div>
       {error && (
         <div className={`fixed bottom-4 right-4 px-4 py-2 rounded shadow-lg transition-opacity duration-500 ${showError ? "opacity-100" : "opacity-0"}`}>
@@ -108,14 +125,14 @@ export function PhonebookPage() {
           </Alert>
         </div>
       )}
-      {entries.length === 0 ? (
+      {filteredEntries.length === 0 ? (
           <div className="flex items-center justify-center h-full w-full">
-            <p className="text-gray-500 text-xl">No entries found. Press the "Add phone" button to get started!</p>
+            <p className="text-gray-500 text-xl">No matching entries found.</p>
           </div>
         ) : (
           <div className="flex gap-8 justify-center-safe flex-wrap scroll-mt-5 mt-12">
           {
-          entries.map((entry) => (
+          filteredEntries.map((entry) => (
             <EntryCard
               key={entry.id}
               name={entry.name}
