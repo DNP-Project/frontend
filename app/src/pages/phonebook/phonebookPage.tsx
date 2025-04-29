@@ -12,7 +12,8 @@ export function PhonebookPage() {
   useEffect(() => {
     async function loadEntries() {
       const data = await fetchEntries();
-      setEntries(data);
+      const flatData = Object.values(data).flat() as {id: string; name: string; phone: string; email: string}[];
+      setEntries(flatData);
     }
     loadEntries();
   }, []);
