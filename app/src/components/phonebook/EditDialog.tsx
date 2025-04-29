@@ -32,6 +32,7 @@ export function EditDialog({ name, phone, email, onSave }: EditDialogProps) {
 
   return (
     <Dialog>
+      console.log("Dialog rendered");
       <DialogTrigger asChild>
         <Button variant="outline" className="mr-2">Edit</Button>
       </DialogTrigger>
