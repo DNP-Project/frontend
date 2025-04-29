@@ -17,7 +17,7 @@ export function PhonebookPage() {
     email: string;
   }[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [showError, setShowError] = useState(false); // New state for controlling visibility
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     async function loadEntries() {
