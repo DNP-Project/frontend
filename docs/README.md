@@ -1,40 +1,34 @@
-## Стек
+## Stack
 react, vite, typescript (SWC), shadcn, axios, i18n
 
-## Структура проекта
-app - сам фронтенд
+## Project structure
+app - the frontend code itself
 
-devops - настройка и конфиг для девопса (не трогать)
+devops - devops config files
 
-scripts - готовые скрипты для упрощения жизни (не трогать)
+scripts - scripts to make life easier
 
-docs - документация
+docs - documentation
 
 ## Структура фронтенда
-public/locales/ - для локалей, автогенерится (не трогать)
+public/locales/ - automatically generated locales code
 
-src/client/ - автогенерация кода для клиента (не трогать)
+src/client/ - automatically generated client code
 
-src/components/ - компоненты shadCN, можно стилизовать под собственные нужды
+src/components/ - shadCN and other stylized components
 
-src/contexts - контексты
+src/contexts - contexts
 
-src/pages/ - отдельные страницы
+src/pages/ - all page files
 
-## Связь с бекендом
+## Backend connection
 
-У нас в итоге будет использоваться json rpc, тк он живет на http1 и может нормально использоваться в вебе. Axios дает полную поддержку по работе с json rpc, так что проблем быть не должно
+We ended up using jsonRPC since it works on http1 and can be used normally on the web. Axios provides full support for working with jsonRPC, so no problems should arise because of this
 
-Еще ты можешь заметить, что есть скрипт автогенерации REST клиента на основе openapi - нам это вероятно не пригодится, все зависит от глубины имплементации проекта, но лишним точно не будет + в итоговую сборку скрипты не входят, так что это ни на что не повлияет
+There is a script for auto-generating a REST client based on openapi for future project updates but it is not included in the final build, so this will not affect anything
 
-## Полезное
+## Workflow
 
-Если ты работаешь на WebStorm, то установи себе easy i18n. Это дает нам возможность быстро менять язык у приложения и тд. После установки у тебя появится вкладка для i18n, по настройке я помогу
+There is a develop and master branch. While working on the project we only committed to the dev branch, the master branch was only updated via pull requests from dev to test all features first and keep the master version stable. 
 
-## Воркфлоу
-
-Вряд ли кому-то нужны все эти игрища с GitFlow и тд, поэтому все будет просто - будет две ветки - dev и master. В dev все время можно коммитить, а в master только Pull Request'ами из deva. В чем разница - в мастере должна быть только полностью стабильная версия. На серваке я все так настрою, что у нас будет следующая схема:
-
-https://\<domain2>.\<domain1>/ - стабильная версия, которая будет собираться с master'а
-
-https://dev.\<domain2>.\<domain1>/ - версия, которая будет собираться с dev'а
+The develop version is hosted on stage.dnp-project.ru and the main version is hosted on dnp-project.ru
